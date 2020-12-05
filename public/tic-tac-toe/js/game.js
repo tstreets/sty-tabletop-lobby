@@ -47,6 +47,10 @@ socket.emit('log user', {
     game: 'tic-tac-toe'
 })
 
+
+const chatLog = parent.document.querySelector('#chat-log');
+chatLog.innerHTML = ``;
+
 function updateMatch() {
     socket.emit('update match', gm);
 }
@@ -70,22 +74,21 @@ socket.on('tic-tac-toe message', res=> {
 
 function updateGame(match) {
     gm = match;
-    console.log(gm);
     if(!!gm.ready) {
         if(!gm.playerA || !gm.playerB) {
             gm.ready = false;
             updateMatch();
         }
         else {
-            console.log('you can start');
+            // console.log('you can start');
         }
     }
     else {
         if(!!gm.playerA && !!gm.playerB) {
-            console.log('Both players')
+            // console.log('Both players')
         }
         else {
-            console.log('Waiting on a player');
+            // console.log('Waiting on a player');
         }
     }
     updateScreen();
@@ -120,8 +123,6 @@ function spaceClicked() {
                 dataset: this.dataset,
                 id: this.id
             });
-            console.log(gm);
-            // outputMessage({text: `<b>${gm.players[((gm.turn - 1) % 2)].name}</b> placed an ${((gm.turn - 1) % 2) ? "O" : "X"} on space ${this.dataset.row}${this.dataset.col}`});
             piecePlayed();
         }
     }
@@ -158,13 +159,12 @@ function piecePlayed() {
 function markSpaces() {
     if(!!gm.start && !!gm.ready) {
         for(let player of gm.players) {
-            console.log(player);
             for(let space of player.spaces) {
                 const spaceRef = document.querySelector(`#${space.id}`);
                 spaceRef.innerHTML = ((player.turn - 1) % 2) ? "O" : "X";
             }
         }
-        // checkWin();
+        checkWin();
     }
 }
 
@@ -185,13 +185,16 @@ function checkWin() {
     }
     if(win.value) {
         gm.win = true;
-        outputMessage({text: `<h1>${win.player} won!</h1>`});
+        outputMessage(`<h3>${win.player} won!</h3>`);
     }
 }
 
 function outputMessage(message) {
     const chatLog = parent.document.querySelector('#chat-log');
     chatLog.innerHTML += message;
+    chatLog.scrollTo({
+        top: chatLog.scrollHeight
+    })
     // document.querySelector('.output').innerHTML += `<div>${message.text}</div>`;
 }
 
