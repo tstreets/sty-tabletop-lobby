@@ -1,0 +1,21 @@
+include ../templates/head
+
+.content.p-5.d-flex.flex-column
+
+    .d-flex
+        form#contact-form
+            h1 Contact
+            .form-group
+                label Full Name
+                input.form-control.border-accent(name='fullname' type='text' placeholder='Full Name')
+            .form-group
+                label Email
+                input.form-control.border-accent(name='email' type='text' placeholder='Email')
+            .form-group
+                label Comment
+                textarea.form-control.border-accent(name='comment' placeholder='Comment')
+            input.btn.btn-accent(type='submit' value='Send')
+
+        img.ml-auto.d-lg-block.d-none(src='https://via.placeholder.com/600x451?text=Visit+Blogging.com+Now')
+
+include ../templates/foot

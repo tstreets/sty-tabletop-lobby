@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title=`${title}`
+        link(rel="shortcut icon", href="/images/Brand2.ico", type="image/x-icon")
+        link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css")
+        link(rel="stylesheet", href="/css/styles.css")
+    body.site.d-flex.flex-column.bg-second
+        nav.navbar.navbar-expand-lg.navbar-dark.bg-first
+            a.nav-link.text-white.mainnav__link(href="/") Tabletop Lobby
+            a.nav-link.text-white.mainnav__link#home(href="/") Home
+            a.nav-link.text-white.mainnav__link#contact(href="/contact") Contact
+            a.nav-link.text-white.mainnav__link#blogs(href="/blogs") Blogs
+            a.nav-link.text-white.mainnav__link#games(href="/games") Games
+            form.form-inline.searchbar.ml-2
+                input.form-control.mr-2(type="search", name="search")
+                input.form-control(type='submit' value='Search')
+            #mainnav__nouser.ml-auto.d-flex(hidden='true')
+                a.nav-link.text-white.mainnav__link#login(href="/login") Login
+            #mainnav__user.ml-auto(hidden='true')
+                a.nav-link.text-white.mainnav__link#account(href="/account") Account
+                a.nav-link.text-white#logout(href="/logout") Logout
+
+        .loader.d-none
+            .spinner-border.m-auto.text-white.loader__icon(role='status')
+                span.sr-only Loading...

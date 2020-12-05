@@ -1,0 +1,17 @@
+include ../templates/head
+
+.content.p-5.d-flex.flex-column#content
+    h1#game-title Game Title
+    .game.d-flex
+        iframe#game-screen.game__screen.bg-black(frameborder="0" style='')
+        #chat-area.game__social
+            div#chat-header.bg-first.game__header
+            div#chat-log.bg-extra.game__chat
+            form#new-msg
+                .d-flex
+                    input.form-control(name='message' type='text' placeholder='Type message...')
+                    input.btn.btn-first(type='submit' value='Send')
+
+include ../templates/foot
+
+script(src="/js/games/game.js")

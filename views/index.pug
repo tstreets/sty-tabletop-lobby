@@ -1,0 +1,15 @@
+include templates/head
+
+.content.p-5.d-flex.flex-column
+    .d-flex.callout.bg-accent.flex-wrap.flex-lg-nowrap.p-3
+        img.mx-lg-5.mx-auto(height='297' width='auto' src="/images/Brand.png", alt="Tabbletop Lobby")
+        div.callout__text.d-flex.flex-column.text-white.justify-content-around.mx-4
+            h1.text-center Welcome to Tabletop Lobby!
+            p Nowadays with COVID-19, it can be very challenging with limited socializing. We're here to help! Join Tabletop Lobby and play games with friends, earn cool badges to show off your skills, and even pitch in on what new games or features should be added. Here you'll find the relaxing break that you needed.
+            div.mx-auto
+                a.callout__btn.btn.btn-white.mr-5(href='/blogs')
+                    b Read Blogs
+                a.callout__btn.btn.btn-white(href='/games') 
+                    b Play Games
+
+include templates/foot

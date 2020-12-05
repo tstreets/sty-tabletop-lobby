@@ -1,0 +1,25 @@
+{
+  "name": "TabletopLobby.v4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "compile-sass": "node-sass public/scss/styles.scss public/css/styles.css -w"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "consolidate": "^0.16.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "firebase-admin": "^9.4.1",
+    "pug": "^3.0.0",
+    "socket.io": "^3.0.3"
+  },
+  "devDependencies": {
+    "bootstrap": "^4.5.3"
+  }
+}

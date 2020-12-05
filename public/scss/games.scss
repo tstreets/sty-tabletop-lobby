@@ -1,0 +1,25 @@
+.game {
+
+    &__screen {
+        width: 800px;
+        height: 451px;
+    }
+
+    &__social {
+        width: 400px;
+    }
+
+    &__chat {
+        height: 371px;
+        overflow-y: scroll;
+    }
+
+    &__header {
+        height: 40px;
+    }
+
+    &__user {
+        font-size: 18px;
+        margin-bottom: 4px;
+    }
+}

@@ -1,0 +1,31 @@
+include ../templates/head
+
+.content.p-5.d-flex.flex-column
+
+    form#signup-form.bg-accent.border.border-accent.authform.m-auto
+        .mt-3
+            h1.text-center.text-white Signup
+        .bg-white.p-5
+            .form-group
+                label Username
+                input.form-control.border-accent(name='username' type='text')
+                span.invalid-feedback#feedback__username
+            .form-group
+                label Email
+                input.form-control.border-accent#email(name='email' type='text')
+                span.invalid-feedback#feedback__email
+            .form-group
+                label Password
+                input.form-control.border-accent#password(name='password' type='password')
+                span
+                    i.fas.fa-eye.password-changer#show-password
+                    i.fas.fa-eye-slash.password-changer#hide-password(hidden)
+                span.invalid-feedback#feedback__password
+            .d-flex.align-items-end
+                input.btn.btn-accent(type='submit' value='Signup')
+                a.login__btn.ml-auto(href='/login')
+                    em Already have an account?
+
+include ../templates/foot
+
+script(src="/js/login/signup.js")

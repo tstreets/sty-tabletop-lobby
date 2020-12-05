@@ -1,0 +1,24 @@
+include ../templates/head
+
+.content.p-5.d-flex.flex-column
+    h1 Blogs
+
+    .mb-3#blog-admin(hidden)
+        a.btn.btn-accent(href='/blogs/add') Add Blog
+
+    #blogsList
+        .d-flex
+            .p-4.border.border-accent.bg-extra
+                h2 Blog Title
+                p
+                    em
+                        div Written by: Ty Streets
+                        div DD-MM-YYYY
+                p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur blandit augue eu augue convallis, sit amet lobortis est dapibus. Mauris placerat justo eget urna volutpat porttitor. Quisque eget cursus tellus, a.
+                input.btn.btn-accent.read-more(data-id='0' type='button' value='Read More')
+            img.d-md-block.d-none(width='480' height='auto' src='https://via.placeholder.com/480x280?text=Visit+Blogging.com+Now')
+
+
+include ../templates/foot
+
+script(src="/js/blogs/blogs.js")

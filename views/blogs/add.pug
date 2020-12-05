@@ -1,0 +1,35 @@
+include ../templates/head
+
+.content.p-5.d-flex.flex-column
+    h1 New Blog
+
+    form#creator
+
+        .form-group
+            label Blog Title
+            input.form-control(name='title' type='text' placeholder=`Blog's Title`)
+        .custom-file
+            input.custom-file-input#hero-file(name='hero' type='file' accept='image/*')
+            label.custom-file-label#hero-name Choose Hero Image...
+        .form-group
+            label Hero Size
+            input.form-control-range(name='heroHeight' type='range' value='280' min='280' max='500')
+        .form-group
+            label Hero Y Position
+            input.form-control-range#hero-position(name='heroPosition' type='range' value='0' min='0' max='100')
+        .form-group
+            label Overview
+            textarea.form-control(name='overview' placeholder='Brief Overview...')
+        
+        #new-sections
+
+        .d-flex.align-items-end
+            input.btn.btn-light.border.border-accent(type='submit' value='Show Preview')
+            a.ml-3(href='/blogs') Cancel
+            input.btn.btn-accent.ml-auto#save-blog(type='button' value='Save')
+
+    #preview.p-3
+
+include ../templates/foot
+
+script(src="/js/blogs/addblog.js")

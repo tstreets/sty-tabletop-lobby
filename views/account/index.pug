@@ -1,0 +1,25 @@
+include ../templates/head
+
+.content.p-5.d-flex.flex-column
+    div.d-flex.mb-3
+        img.mr-5(src='https://via.placeholder.com/320x280?text=No+Profile+Pic')
+        div
+            h1#username Username
+            p
+                a(href='/account/edit') Edit Account
+            p
+                div Games Played
+                div#games-played
+                    em Tic Tac Toe
+                    em Left-Center-Right
+
+
+    div
+        h1 Acheivements
+        #achievements
+            div(style='background-image: url("https://via.placeholder.com/100x100?text=Badge"); height: 100px; width: 100px;')
+
+
+include ../templates/foot
+
+script(src="/js/account/account.js")

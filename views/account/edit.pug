@@ -1,0 +1,30 @@
+include ../templates/head
+
+.content.p-5.d-flex.flex-column
+    h1 Edit Account
+    div
+        form#edit-account-form
+            div.form-group
+                label Username
+                input.form-control.border-accent(name='username' type='text')
+            div.form-group
+                label Email
+                input.form-control.border-accent(name='email' type='text')
+            div.form-group
+                label Profile Picture
+                .d-flex.align-items-end
+                    input.btn.btn-accent#image-btn(type='button' value='Choose image')
+                    span#image-name
+                input#image-file(name='image' type='file' accept='image/*' hidden)
+            div.form-group
+                label Old Password
+                input.form-control.border-accent(name='oldpassword' type='text')
+            div.form-group
+                label New Password
+                input.form-control.border-accent(name='newpassword' type='text')
+            .d-flex.align-items-end
+                input.btn.btn-accent(type='submit' value='Update')
+                a.ml-3(href='/account') Cancel
+
+
+include ../templates/foot

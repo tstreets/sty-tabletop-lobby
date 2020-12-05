@@ -1,0 +1,22 @@
+$dark-orange: #d64b18;
+$light-pink: #fab69d;
+$light-blue: #f1f9ff;
+$dark-blue: #2699fb;
+
+$colors: (
+    "first": $dark-orange,
+    "second": $light-pink,
+    "accent": $dark-blue,
+    "extra": $light-blue,
+    "black": #000,
+    "white": #FFF,
+) !default;
+
+$theme-colors: (
+    "first": $dark-orange,
+    "second": $light-pink,
+    "accent": $dark-blue,
+    "extra": $light-blue, 
+    "black": #000,
+    "white": #FFF,
+) !default;
