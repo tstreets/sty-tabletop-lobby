@@ -1,5 +1,18 @@
 include ../templates/head
 
-h1 Games
+.content.p-5.d-flex.flex-column
+    h1 Games
+
+    #gamesList
+        .d-flex
+            .p-4.border.border-accent.bg-extra
+                h2 Tic-Tac-Toe
+                p
+                    em
+                        div Created by: Ty Streets
+                p Multiplayer tic-tac-toe.
+                a.btn.btn-accent.read-more(data-id='0' type='button' value='Play Now' href='/games/tic-tac-toe')
+            img.d-md-block.d-none(width='480' height='auto' src='https://via.placeholder.com/480x280?text=Visit+Blogging.com+Now')
+
 
 include ../templates/foot
