@@ -88,9 +88,7 @@ socket.on('all comments', async res=> {
     if(!!res.status) {
         comments.innerHTML = returnModal();
         let commentsList = res.comments.sort(function(a, b) {
-            return parseInt(b.created) - parseInt(a.created);
-            // -1 
-            // +1
+            return parseInt(a.created) - parseInt(b.created);
         })
 
         const emojis = await fetch('/data/icon.json')

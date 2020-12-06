@@ -2,6 +2,7 @@ const socket = io();
 
 document.querySelector('#game-id').innerHTML = location.href.split('=')[1];
 
+
 let gm = {
     playerA : {},
     playerB : {},
