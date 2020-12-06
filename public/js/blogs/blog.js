@@ -109,7 +109,7 @@ socket.on('all comments', async res=> {
                         ${comment.user}
                         <span class='comments__date mt-auto mx-2'>${date}</span>
                         ${
-                            (comment.userID == localData.user.id)
+                            (comment.userID == localData.user?.id)
                             ? `
                             <a data-id='${comment.id}' data-blog='${comment.blog}' data-toggle="modal" data-target="#exampleModal" class='edit-comment comments__option ml-auto mr-3'>Edit</a>
                             <a data-id='${comment.id}' data-blog='${comment.blog}' data-toggle="modal" data-target="#exampleModal" class='delete-comment comments__option text-danger'>Delete</a>
