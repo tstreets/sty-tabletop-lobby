@@ -140,6 +140,9 @@ socket.on('all comments', async res=> {
                 dc.onclick = deleteComment;
             })
         }
+        comments.scrollTo({
+            top: comments.scrollHeight
+        })
     }
 })
 
