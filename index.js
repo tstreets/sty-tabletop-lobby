@@ -120,6 +120,28 @@ io.on('connection', socket=> {
         })
     })
 
+    socket.on('delete comment', commentInfo=> {
+        commentInfo.socket = socket;
+        fb.deleteComment(commentInfo);
+    })
+
+    socket.on('edit comment', commentInfo=> {
+        commentInfo.socket = socket;
+        fb.editComment(commentInfo);
+    })
+
+    socket.on('get user info', userInfo=> {
+        fb.retrieveAccountDetails({
+            info: userInfo.user,
+            socket: socket
+        });
+    })
+
+    socket.on('update user info', accountInfo=> {
+        accountInfo.socket = socket;
+        fb.updateAccountDetails(accountInfo)
+    })
+
     socket.on('game all message', gameInfo=> {
         const gameExists = !!serverData[gameInfo.info.name];
         if(gameExists) {
@@ -545,6 +567,60 @@ fb.retrieveAccount = function(user) {
     })
     .catch(err=> console.warn(err))
 }
+fb.retrieveAccountDetails = function(user) {
+    db.collection('User').doc(user.info.id).get()
+    .then(async userDoc=> {
+        const userData = userDoc.data();
+        if(!!userData) {
+            if(!!userData.profileImage) {
+                const imageLink = await fb.retrieveImage(`${user.info.id}__${userData.profileImage}`);
+                userData.profileImage = {
+                    name: userData.profileImage,
+                    file: imageLink
+                }
+            }
+            user.socket.emit('get user info', {
+                status: 1,
+                user: userData
+            });
+        }
+    })
+}
+fb.updateAccountDetails = function(account) {
+    const userRef = db.collection('User').doc(account.user.id);
+    userRef.get().then(async userDoc=> {
+        const oldUserData = userDoc.data();
+        if(!!oldUserData) {
+            if(!!account.profileImage) {
+                await fb.uploadImage({
+                    path: account.user.id,
+                    name: account.profileImage.name,
+                    file: account.profileImage.file
+                });
+            }
+            const newProfile = (!!account.profileImage) ? account.profileImage.name : null;
+            let newPassword = null;
+            if(!!account.newpassword) {
+                newPassword = await passwords.hash(account.newpassword);
+            }
+            const updatedData = {
+                code: oldUserData.code,
+                username: account.username,
+                email: account.email,
+                profileImage: newProfile || oldUserData.profileImage || "",
+                password: newPassword || oldUserData.password,
+            }
+            userRef.update(updatedData)
+            .then(()=> {
+                account.socket.emit('update user info', {
+                    status: 1,
+                    user: {id: account.user.id, username: account.username}
+                })
+            })
+        }
+    })
+    .catch(err=> console.warn(err));
+}
 fb.addComment = function(comment) {
     db.collection('User').doc(comment.userInfo.id)
     .get().then(userDoc=> {
@@ -556,7 +632,8 @@ fb.addComment = function(comment) {
                     .collection('Comment').add({
                         user: userDoc.data().username,
                         comment: comment.info.comment,
-                        created: comment.info.created
+                        created: comment.info.created,
+                        userID: comment.userInfo.id
                     })
                     .then(commentDoc=> {
                         comment.socket.emit('add comment', {
@@ -587,11 +664,14 @@ fb.retrieveAllComments = function(blog) {
             const allComments = [];
             blogRef.collection('Comment').get()
             .then(snap=> {
-                snap.forEach(commentDoc=> {
+                snap.forEach(async commentDoc=> {
                     allComments.push({
                         comment: commentDoc.data().comment,
                         user: commentDoc.data().user,
-                        created: commentDoc.data().created
+                        created: commentDoc.data().created,
+                        userID: commentDoc.data().userID,
+                        id: commentDoc.id,
+                        blog: blogDoc.id
                     });
                     if(snap.size == allComments.length) {
                         blog.socket.emit('all comments', {
@@ -599,6 +679,38 @@ fb.retrieveAllComments = function(blog) {
                             comments: allComments
                         })
                     }
+                })
+            })
+        }
+    })
+}
+fb.deleteComment = function(comment) {
+    const blogRef = db.collection('Blog').doc(comment.blog);
+    blogRef.get().then(blogDoc=> {
+        if(!!blogDoc.data()) {
+            blogRef.collection('Comment').doc(comment.id)
+            .delete().then(()=> {
+                fb.retrieveAllComments({
+                    info: {id: comment.blog},
+                    socket: comment.socket
+                })
+            })
+        }
+    })
+    .catch(err=> console.warn(err));
+}
+fb.editComment = function(comment) {
+    const blogRef = db.collection('Blog').doc(comment.blog);
+    blogRef.get().then(blogDoc=> {
+        if(!!blogDoc.data()) {
+            blogRef.collection('Comment').doc(comment.id)
+            .update({
+                comment: comment.text
+            })
+            .then(()=> {
+                fb.retrieveAllComments({
+                    info: {id: comment.blog},
+                    socket: comment.socket
                 })
             })
         }

@@ -23,3 +23,21 @@
         margin-bottom: 4px;
     }
 }
+
+.gamecard {
+    height: 330px;
+    overflow: hidden;
+
+    &__holder {
+        height: 100%; 
+        overflow: hidden;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+    }
+    
+    &__overview {
+        overflow: hidden; 
+        height: 100px;
+    }
+}

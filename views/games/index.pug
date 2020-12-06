@@ -4,15 +4,16 @@ include ../templates/head
     h1 Games
 
     #gamesList
-        .d-flex
-            .p-4.border.border-accent.bg-extra
+        .d-flex.mb-5.gamecard
+            .p-4.border.border-accent.bg-extra.container
                 h2 Tic-Tac-Toe
                 p
                     em
                         div Created by: Ty Streets
-                p Multiplayer tic-tac-toe.
+                p.gamecard__overview Multiplayer tic-tac-toe.
                 a.btn.btn-accent.read-more(data-id='0' type='button' href='/games/tic-tac-toe') Play Now
-            img.d-md-block.d-none(width='480' height='auto' src='https://via.placeholder.com/480x280?text=Visit+Blogging.com+Now')
+            div()
+            div.d-md-block.d-none.container.gamecard__holder(style='background-image: url("/images/tic-tac-toe.png")')
 
 
 include ../templates/foot

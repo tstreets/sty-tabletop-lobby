@@ -4,6 +4,11 @@
         width: 100%;
         height: 280px;
         overflow: hidden;
+
+        img {
+            width: 100%;
+            height: auto;
+        }
     }
 }
 
@@ -31,5 +36,29 @@
     &__overview {
         overflow: hidden; 
         height: 100px;
+    }
+}
+
+.comments {
+    max-height: 100vh;
+    overflow-y: scroll;
+
+    &__option {
+        font-size: 16px;
+    }
+
+    &__date {
+        font-size: 14px;
+        font-style: italic;
+        font-weight: normal;
+    }
+}
+
+.emoji {
+    font-size: 25px;
+    cursor: pointer;
+
+    &:hover {
+        transform: scale(1.25);
     }
 }

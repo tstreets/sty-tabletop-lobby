@@ -6,25 +6,23 @@ include ../templates/head
         form#edit-account-form
             div.form-group
                 label Username
-                input.form-control.border-accent(name='username' type='text')
+                input.form-control.border-accent#username(name='username' type='text')
             div.form-group
                 label Email
-                input.form-control.border-accent(name='email' type='text')
-            div.form-group
-                label Profile Picture
-                .d-flex.align-items-end
-                    input.btn.btn-accent#image-btn(type='button' value='Choose image')
-                    span#image-name
-                input#image-file(name='image' type='file' accept='image/*' hidden)
+                input.form-control.border-accent#email(name='email' type='text')
+            .custom-file.mb-2
+                input.custom-file-input#image-file(name='image' type='file' accept='image/*')
+                label.custom-file-label#image-name Profile Picture
             div.form-group
                 label Old Password
-                input.form-control.border-accent(name='oldpassword' type='text')
+                input.form-control.border-accent#password(name='oldpassword' type='text')
             div.form-group
                 label New Password
-                input.form-control.border-accent(name='newpassword' type='text')
+                input.form-control.border-accent#new-password(name='newpassword' type='text')
             .d-flex.align-items-end
                 input.btn.btn-accent(type='submit' value='Update')
                 a.ml-3(href='/account') Cancel
 
 
 include ../templates/foot
+script(src="/js/account/edit.js")
