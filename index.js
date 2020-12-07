@@ -269,6 +269,10 @@ io.on('connection', socket=> {
         }
     })
 
+    socket.on('contact', contactInfo=> {
+        fb.addContact(contactInfo);
+    })
+
     socket.on('disconnect', ()=> {
         const games = ['tic-tac-toe'];
         if(!!socket.userInfo) {
@@ -715,6 +719,13 @@ fb.editComment = function(comment) {
             })
         }
     })
+}
+fb.addContact = function(contact) {
+    db.collection('Contact').add({
+        comment: contact.comment,
+        fullname: contact.fullname,
+        email: contact.email
+    });
 }
 
 const bcrypt = require('bcrypt');
